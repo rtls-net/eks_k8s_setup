@@ -13,7 +13,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
    d. Test that your kubectl installation was successful    
    ```sh 
    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
-   chmod +x ./kubectl
+   chmod +x ./kubectl or chmod +x kubectl
    mv ./kubectl /usr/local/bin 
    kubectl version --short --client
    ```
@@ -25,17 +25,25 @@ You can follow same procedure in the official  AWS document [Getting started wit
    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
    sudo mv /tmp/eksctl /usr/local/bin
    eksctl version
+
+   ll /usr/local/bin  ->check kubectla and eksctl
    ```
   
 3. Create an IAM Role and attache it to EC2 instance    
-   `Note: create IAM user with programmatic access if your bootstrap system is outside of AWS`   
+   `Note: create IAM user with programmatic access if your bootstrap system is outside of AWS`
+   create IAM Role-> IAM->ROle->select Common Usecase as EC2
+     
    IAM user should have access to   
-   IAM   
-   EC2   
-   VPC    
-   CloudFormation
+   IAM   --IAMFullAccess
+   EC2   --AmazonEc2FullAceess
+   VPC    --AmazonVPCFullAcess
+   CloudFormation  ---AWSCloudFormationFullAcess
 
-4. Create your cluster and nodes 
+   and also AdministiveAcess
+
+   Then add this role to EC2 ->select Ec2 instence->Manage-security->Modify IAM-Select new created Bootstrap Role
+
+5. Create your cluster and nodes 
    ```sh
    eksctl create cluster --name cluster-name  \
    --region region-name \
@@ -50,14 +58,19 @@ You can follow same procedure in the official  AWS document [Getting started wit
    --node-type t2.small \
     ```
 
-5. To delete the EKS clsuter 
+   --Once executed this this CloudFormation stack,EC2 instace,EKS cluster get created
+   you can see worker nodes in EC2 instce but master node will be managed by aws
+
+7. To delete the EKS clsuter 
    ```sh 
    eksctl delete cluster valaxy --region ap-south-1
    ```
    
-6. Validate your cluster using by creating by checking nodes and by creating a pod 
+8. Validate your cluster using by creating by checking nodes and by creating a pod 
    ```sh 
    kubectl get nodes
-   kubectl run pod tomcat --image=tomcat 
+   kubectl run pod tomcat --image=tomcat
+
+   eksctl get cluster
    ```
 
