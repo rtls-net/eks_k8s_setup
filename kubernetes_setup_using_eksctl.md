@@ -69,6 +69,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
 8. Validate your cluster using by creating by checking nodes and by creating a pod 
    ```sh 
    kubectl get nodes
+   kubectl get pods
    kubectl run pod tomcat --image=tomcat
 
    eksctl get cluster
