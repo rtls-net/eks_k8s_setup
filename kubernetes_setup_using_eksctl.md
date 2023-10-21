@@ -82,5 +82,5 @@ You can follow same procedure in the official  AWS document [Getting started wit
   copy External Ip
 
   access like 
-  <Extennal-service-IP>:<service-port>
+  '<Extennal-service-IP>:<service-port>'
   ```
