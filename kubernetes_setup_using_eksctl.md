@@ -65,7 +65,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
    ```sh 
    eksctl delete cluster valaxy --region ap-south-1
    ```
-   
+   Note:  Pease make sure cluster name should match exact name,its case sensetive
 8. Validate your cluster using by creating by checking nodes and by creating a pod 
    ```sh 
    kubectl get nodes
@@ -75,3 +75,12 @@ You can follow same procedure in the official  AWS document [Getting started wit
    eksctl get cluster
    ```
 
+9.Expose service like below command
+
+ kubectl get svc
+
+  copy External Ip
+
+  access like 
+  <Extennal-service-IP>:<service-port>
+  ```
