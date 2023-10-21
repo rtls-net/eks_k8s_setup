@@ -82,5 +82,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
   copy External Ip
 
   access like 
-  '<Extennal-service-IP>:<service-port>'
-  ```
+         <extennal-service-IP>:<service-port>
+ Ex:  http://a21fe5652929841b49735d926671a1f0-1676423820.ap-south-1.elb.amazonaws.com/
+  As service port is 80
+  
